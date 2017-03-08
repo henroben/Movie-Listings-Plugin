@@ -51,3 +51,21 @@ function ml_register_movie_listing() {
 }
 
 add_action('init', 'ml_register_movie_listing');
+
+// Create Genres Taxonomy
+function ml_genres_taxonomy() {
+	register_taxonomy(
+		'genres',
+		'movie_listing',
+		array(
+			'label'     =>  'Genres',
+			'query_var' =>  true,
+			'rewrite'   =>  array(
+				'slug'          =>  'genre',
+				'with_front'    => false,
+			)
+		)
+	);
+}
+
+add_action('init', 'ml_genres_taxonomy');
