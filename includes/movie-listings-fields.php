@@ -23,6 +23,7 @@ function ml_add_fields_callback($post) {
 			<input type="text"
 			       id="movie_id"
 			       name="movie_id"
+			       class="full"
 				   value="<?php if(!empty($ml_stored_meta['movie_id'])) echo esc_attr($ml_stored_meta['movie_id'][0]); ?>">
 		</div>
 		<div class="form-group">
@@ -43,6 +44,7 @@ function ml_add_fields_callback($post) {
 					} ?>
 			</select>
 		</div>
+		<?php if(get_settings('ml_settings_show_editor')) : ?>
 		<div class="form-group">
 			<label for="details"><?php esc_html_e('Details', 'ml-domain'); ?></label>
 			<?php
@@ -50,12 +52,20 @@ function ml_add_fields_callback($post) {
 				$editor = 'details';
 				$settings = array(
 					'textarea_rows' =>  5,
-					'media_buttons' =>  true
+					'media_buttons' =>  get_settings('ml_settings_show_media_buttons')
 				);
 
 				wp_editor($content, $editor, $settings);
 			?>
 		</div>
+		<?php else : ?>
+			<div class="form-group">
+				<label for="details"><?php esc_html_e('Details', 'ml-domain'); ?></label>
+				<textarea id="details" name="details" class="full">
+					<?php if(!empty($ml_stored_meta['details'])) echo esc_html($ml_stored_meta['details'][0]); ?>
+				</textarea>
+			</div>
+		<?php endif; ?>
 		<div class="form-group">
 			<label for="release_date"><?php esc_html_e('Release Date', 'ml-domain'); ?></label>
 			<input type="date"
@@ -68,6 +78,7 @@ function ml_add_fields_callback($post) {
 			<input type="text"
 			       id="director"
 			       name="director"
+			       class="full"
 			       value="<?php if(!empty($ml_stored_meta['director'])) echo esc_attr($ml_stored_meta['director'][0]); ?>">
 		</div>
 		<div class="form-group">
@@ -75,6 +86,7 @@ function ml_add_fields_callback($post) {
 			<input type="text"
 			       id="stars"
 			       name="stars"
+			       class="full"
 			       value="<?php if(!empty($ml_stored_meta['stars'])) echo esc_attr($ml_stored_meta['stars'][0]); ?>">
 		</div>
 		<div class="form-group">
