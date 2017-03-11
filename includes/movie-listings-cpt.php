@@ -58,9 +58,10 @@ function ml_genres_taxonomy() {
 		'genres',
 		'movie_listing',
 		array(
-			'label'     =>  'Genres',
-			'query_var' =>  true,
-			'rewrite'   =>  array(
+			'label'         =>  'Genres',
+			'hierarchical'  =>  true,
+			'query_var'     =>  true,
+			'rewrite'       =>  array(
 				'slug'          =>  'genre',
 				'with_front'    => false,
 			)

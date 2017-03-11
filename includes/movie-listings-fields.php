@@ -94,3 +94,49 @@ function ml_add_fields_callback($post) {
 	</div>
 	<?php
 }
+
+function ml_meta_save($post_id) {
+	$is_autosave = wp_is_post_autosave($post_id);
+	$is_revision = wp_is_post_revision($post_id);
+	$is_valid_nonce = (isset($_POST['ml_movie_listings_nonce']) && wp_verify_nonce($_POST['ml_movie_listings_nonce'], basename(__FILE__))) ? 'true' : 'false';
+
+	if($is_autosave || $is_revision || !$is_valid_nonce) {
+		return;
+	}
+
+	if($_POST['movie_id']) {
+		update_post_meta($post_id, 'movie_id', sanitize_text_field($_POST['movie_id']));
+	}
+
+	if($_POST['mpaa_rating']) {
+		update_post_meta($post_id, 'mpaa_rating', sanitize_text_field($_POST['mpaa_rating']));
+	}
+
+	if($_POST['details']) {
+		update_post_meta($post_id, 'details', sanitize_text_field($_POST['details']));
+	}
+
+	if($_POST['release_date']) {
+		update_post_meta($post_id, 'release_date', sanitize_text_field($_POST['release_date']));
+	}
+
+	if($_POST['director']) {
+		update_post_meta($post_id, 'director', sanitize_text_field($_POST['director']));
+	}
+
+	if($_POST['stars']) {
+		update_post_meta($post_id, 'stars', sanitize_text_field($_POST['stars']));
+	}
+
+	if($_POST['runtime']) {
+		update_post_meta($post_id, 'runtime', sanitize_text_field($_POST['runtime']));
+	}
+
+	if($_POST['trailer']) {
+		update_post_meta($post_id, 'trailer', sanitize_text_field($_POST['trailer']));
+	}
+}
+
+add_action('save_post', 'ml_meta_save');
+
+?>
