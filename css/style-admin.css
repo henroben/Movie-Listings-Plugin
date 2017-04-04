@@ -23,3 +23,21 @@
 .mins {
     font-size: 13px;
 }
+
+.order-save-msg, .order-save-err {
+    display: none;
+    padding: 10px !important;
+}
+
+.movie-sort-list {
+    max-width: 400px;
+}
+.movie-sort-list li {
+    padding: 12px;
+    background-color: #f7f7f7;
+    border: solid 1px #ddd;
+}
+.movie-sort-list li:hover {
+    background-color: #f5f5f5;
+    cursor: crosshair;
+}

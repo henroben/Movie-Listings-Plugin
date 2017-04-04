@@ -2,8 +2,8 @@
 
 // Creat Movie Listing Post Type
 function ml_register_movie_listing() {
-	$singular_name = apply_filters('mtl_label_single', 'Movie Listing');
-	$plural_name = apply_filters('mtl_label_plural', 'Movie Listings');
+	$singular_name = apply_filters('ml_label_single', 'Movie Listing');
+	$plural_name = apply_filters('ml_label_plural', 'Movie Listings');
 
 	$labels = array(
 		'name'                  =>  $plural_name,
@@ -38,8 +38,8 @@ function ml_register_movie_listing() {
 		'has_archive'           =>  true,
 		'query_var'             =>  true,
 		'can_export'            =>  true,
-		'rewrite'               =>  true,
-		'cabability_type'       => 'post',
+		'rewrite'               => array('slug' => 'movie_listing', 'with_front' => FALSE),
+		'capability_type'       => 'post',
 		'supports'              => array(
 			'title',
 			'thumbnail'
@@ -48,6 +48,7 @@ function ml_register_movie_listing() {
 
 	// Register Post Type
 	register_post_type('movie_listing', $args);
+	flush_rewrite_rules();
 }
 
 add_action('init', 'ml_register_movie_listing');
