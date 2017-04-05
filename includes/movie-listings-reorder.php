@@ -44,3 +44,30 @@ function ml_reorder_movies_callback() {
 	</div>
 	<?php
 }
+
+// Save Order
+function ml_save_order() {
+	// Check Nonce/Token
+	if(!check_ajax_referer('ml-token', 'token')) {
+		return wp_send_json_error('Invalid Token');
+	}
+	// Check User
+	if(!current_user_can('manage_options')) {
+		return wp_send_json_error('Not Authorised');
+	}
+	$order = $_POST['order'];
+	$counter = 0;
+
+	foreach ($order as $listing_id) {
+		$listing = array(
+			'ID'    =>  (int)$listing_id,
+			'menu_order'    =>  $counter
+		);
+		wp_update_post($listing);
+		$counter++;
+	}
+
+	wp_send_json_success('List Order Saved');
+}
+
+add_action('wp_ajax_save_order', 'ml_save_order');

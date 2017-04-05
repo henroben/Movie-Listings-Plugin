@@ -24,6 +24,10 @@
     font-size: 13px;
 }
 
+.loading {
+    display: none;
+}
+
 .order-save-msg, .order-save-err {
     display: none;
     padding: 10px !important;
