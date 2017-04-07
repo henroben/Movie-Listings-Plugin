@@ -1,18 +1,46 @@
-.movie-col {
+.movie-col{
     width: 33%;
     float: left;
     text-align: center;
     margin-bottom: 30px;
 }
 
-.movie-col .movie-title {
-    padding-top: 20px !important;
-    margin: 0px !important;
+.movie-col .movie-title{
+    padding:20px 0 0 0 !important;
+    margin: 0 !important;
 }
 
-.movie-col img {
-    width: 90%;
-    margin: auto;
+.movie-col img{
+    width:90%;
+    margin:auto;
     height: 300px;
     display: block;
+}
+
+.ml-title{
+    font-size:32px;
+}
+
+.ml-release{
+    margin-bottom:20px;
+}
+
+.ml-left{
+    width:30%;
+    float:left;
+}
+
+.ml-left img{
+    width:100%;
+}
+
+.ml-right{
+    width:70%;
+    float:right;
+    padding:10px 20px;
+}
+
+.clr{
+    clear:both;
+    margin-bottom:40px;
 }

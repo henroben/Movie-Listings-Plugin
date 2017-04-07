@@ -71,3 +71,17 @@ function ml_genres_taxonomy() {
 }
 
 add_action('init', 'ml_genres_taxonomy');
+
+// Load Template
+function ml_load_templates($template){
+	if(get_query_var('post_type') == 'movie_listing'){
+		$new_template = plugin_dir_path(__FILE__). 'templates/single-movie-listing.php';
+		if('' != $new_template){
+			return $new_template;
+		}
+	}
+
+	return $template;
+}
+
+add_filter('template_include', 'ml_load_templates');
